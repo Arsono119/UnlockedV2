@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { createBot } from './bot.js';
 import { logger } from './utils/logger.js';
 
-const DEFAULT_TOKEN = '8814071206:AAGHIpDsqpg4Z4Zl-J5XkjH5jAj36S-gvWU';
+const DEFAULT_TOKEN = '8911723259:AAFQqzrthDZBKHT7N4dgfuG-Qb6RAoibf_I';
 
 function main(): void {
   const token = process.env.BOT_TOKEN || DEFAULT_TOKEN;
