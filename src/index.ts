@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { createBot } from './bot.js';
 import { logger } from './utils/logger.js';
 
-const DEFAULT_TOKEN = '8911723259:AAFQqzrthDZBKHT7N4dgfuG-Qb6RAoibf_I';
+const DEFAULT_TOKEN = '';
 
 function main(): void {
   const token = process.env.BOT_TOKEN || DEFAULT_TOKEN;
@@ -12,7 +12,12 @@ function main(): void {
   const bot = createBot(token);
   
   bot.start({
-    onStart: () => logger.info('Bot polling dimulai'),
+    onStart: () => {
+      logger.info('=======================================');
+      logger.info('  Bot UnlockedV2 AKTIF ✅');
+      logger.info('  Polling Telegram berjalan...');
+      logger.info('=======================================');
+    },
     allowed_updates: ['message']
   });
 
