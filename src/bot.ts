@@ -8,11 +8,11 @@ export function createBot(token: string): Bot<Context> {
   const bot = new Bot<Context>(token);
 
   bot.command('start', async (ctx) => {
-    await ctx.reply(formatWelcome(), { parse_mode: 'MarkdownV2' });
+    await ctx.reply(formatWelcome(), { parse_mode: 'HTML' });
   });
 
   bot.command('help', async (ctx) => {
-    await ctx.reply(formatHelp(), { parse_mode: 'MarkdownV2' });
+    await ctx.reply(formatHelp(), { parse_mode: 'HTML' });
   });
 
   bot.on('message:text', async (ctx) => {
@@ -22,7 +22,7 @@ export function createBot(token: string): Bot<Context> {
       return;
     }
 
-    const statusMsg = await ctx.reply('🔄 Mengekstrak video URL...', { parse_mode: 'MarkdownV2' });
+    const statusMsg = await ctx.reply('🔄 Mengekstrak video URL...', { parse_mode: 'HTML' });
 
     try {
       const result = await extractHttp(text);
@@ -32,11 +32,11 @@ export function createBot(token: string): Bot<Context> {
       if (result.thumbnail) {
         await ctx.replyWithPhoto(result.thumbnail, {
           caption: formatCaption(result.title, result.videoUrl),
-          parse_mode: 'MarkdownV2'
+          parse_mode: 'HTML'
         });
       } else {
         await ctx.reply(formatCaption(result.title, result.videoUrl), {
-          parse_mode: 'MarkdownV2'
+          parse_mode: 'HTML'
         });
       }
 
@@ -47,7 +47,7 @@ export function createBot(token: string): Bot<Context> {
       const msg = err instanceof Error ? err.message : 'Gagal ekstrak video';
       logger.error('Extraction failed', { error: msg, url: text, chatId: ctx.chat.id });
 
-      await ctx.reply(formatError(msg), { parse_mode: 'MarkdownV2' });
+      await ctx.reply(formatError(msg), { parse_mode: 'HTML' });
     }
   });
 
