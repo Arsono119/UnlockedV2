@@ -2,14 +2,10 @@ import 'dotenv/config';
 import { createBot } from './bot.js';
 import { logger } from './utils/logger.js';
 
+const DEFAULT_TOKEN = '8814071206:AAGHIpDsqpg4Z4Zl-J5XkjH5jAj36S-gvWU';
+
 function main(): void {
-  const token = process.env.BOT_TOKEN;
-  
-  if (!token || token === 'your_bot_token_here') {
-    logger.error('BOT_TOKEN tidak ditemukan di .env');
-    logger.error('Salin .env.example ke .env dan isi BOT_TOKEN dari @BotFather');
-    process.exit(1);
-  }
+  const token = process.env.BOT_TOKEN || DEFAULT_TOKEN;
 
   logger.info('Memulai UnlockedV2 bot...');
   
